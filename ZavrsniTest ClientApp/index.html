@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZavrsniTest</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <div id="container">
+        <div class="row">
+            <div class="col-1">
+            </div>
+            <div class="col-10">
+                <div class="d-flex justify-content-center text-center">
+                    <!----------------------------LOGIN INFO-->
+                    <div class="d-grid col-6">
+                    <div ><h3 id="infoLog"></h3></div>
+                    <div id="info"></div>
+                    <!----------------------------ACCOUNT BUTTONS-->
+                        <button class="btn btn-danger m-1" id="loginButton" onclick="showLogin()">Prijava</button>
+                        <button class="btn btn-secondary m-1" id="registerButton" onclick="showRegister()">Registracija</button>
+                        <button class="btn btn-danger m-1" id="logoutButton" style="display:none" onclick="logout()">Odjava</button>
+                    </div>
+                </div>
+                <!----------------------------REGISTER-->
+                <div class="" id="registerForm" style="display:none">
+                    <form method="post" action="post/" id="registerForm" onsubmit="return registerUser()">
+                        <table>
+                            <tr>
+                                <td>                            <label for="usernameRegister">Korisnicko ime:</label></td>
+                                <td>                            <input class="form-control" type="text" name="usernameRegister" id="usernameRegister"></td>
+                            </tr>
+                            <tr>
+                                <td>                            <label for="emailRegister">Email:</label></td>
+                                <td>                            <input class="form-control" type="email" name="emailRegister" id="emailRegister"></td>
+                            </tr>
+                            <tr>
+                                <td>                            <label for="passwordRegister">Lozinka:</label></td>
+                                <td>                            <input class="form-control" type="password" name="passwordRegister" id="passwordRegister"></td>
+                            </tr>
+                            <tr>
+                                <td>                            <label for="confirmPasswordRegister">Ponovi lozinku:</label></td>
+                                <td>                            <input class="form-control" type="password" name="confirmPasswordRegister" id="confirmPasswordRegister"></td>
+                            </tr>
+                        </table>
+                        <button type="submit" class="btn btn-primary m-1">Register</button>
+                        <br>
+                        <button type="button" class="btn btn-secondary m-1" id="odustajanjeRegisterButton" onclick="odustajanjeButton()">Odustajanje</button>
+                    </form>
+                </div>
+                <!----------------------------LOGIN-->
+                <div class="" id="loginForm" style="display:none">
+                    <form method="post" action="post/" id="loginForm" onsubmit="return loginUser()">
+                        <table>
+                            <tr>
+                                <td>                            <label for="usernameLogin">Korisnicko ime:</label></td>
+                                <td>                            <input class="form-control" type="text" name="usernameLogin" id="usernameLogin"></td>
+                            </tr>
+                            <tr>
+                                <td>                            <label for="passwordLogin">Lozinka:</label></td>
+                                <td>
+                                    <input class="form-control" type="password" name="passwordLogin" id="passwordLogin">
+                                </td>
+                            </tr>
+                        </table>
+                        <button type="submit" class="btn btn-primary m-1">Login</button>
+                        <br>
+                        <button type="button" class="btn btn-secondary m-1" id="odustajanjeLoginButton" onclick="odustajanjeButton()">Odustajanje</button>
+                    </form>
+
+                </div>
+                
+                <!----------------------------DATA-->
+                <div class="" id="pretragaForm" style="display:none">
+                    <form form method="post" action="post/" id="pretragaForm" onsubmit="return pretraga()"></form>
+                    <table>
+                        <tr>
+                            <td><label for="najmanje">Najmanje (kg)</label></td>
+                            <td><input type="text" type="number" name="najmanje"></td>
+                        </tr>
+                        <tr>
+                            <td><label for="najvise">Najmanje (kg)</label></td>
+                            <td><input type="text" type="number" name="najvise"></td>
+                        </tr>
+                        <button type="submit">Trazi</button>
+                    </table>
+                </div>
+                <div class="text-center" id="data" style="display:none"></div>
+                <div class="p-4" id="ribaForm" style="display:none">
+                    <h3>Dodavanje nove ribe</h3>
+                    <form method="post" action="post/" id="ribaForm" onsubmit="return submitRibaForm()">
+                        <div class="form-group">
+                            <label for="sortaRibe">Sorta:</label>
+                            <input class="form-control" type="text" name="sortaRibe" id="sortaRibe">
+                        </div>
+                        <div class="form-group">
+                            <label for="mestoUlovaRibe">Mesto ulova:</label>
+                            <input class="form-control" type="text" name="mestoUlovaRibe" id="mestoUlovaRibe">
+                        </div>
+                        <div class="form-group">
+                            <label for="cenaRibe">Cena (din/kg):</label>
+                            <input class="form-control" type="text" name="cenaRibe" id="cenaRibe">
+                        </div>
+                        <div class="form-group">
+                            <label for="ukupnaKolicinaRibe">ukupna kolicina (kg):</label>
+                            <input class="form-control" type="number" name="ukupnaKolicinaRibe" id="ukupnaKolicinaRibe"></select>
+                        </div>
+                        <div class="form-group">
+                            <label for="ribranicaRibe">Ribranica:</label>
+                            <select class="form-control" name="ribranicaRibe" id="ribranicaRibe"></select>
+                        </div>
+                        <button type="submit" class="btn btn-primary m-1">Dodavanje</button>
+                        <button type="button" class="btn btn-secondary m-1" onclick="return odustajanjeDodavanjaRibe()">Odustajanje</button>
+                    </form>
+                </div>
+                <!---------------------------------->
+            </div>
+            <div class="col-1"></div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
